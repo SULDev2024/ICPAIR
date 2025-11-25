@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ICPAIR/static/css/main.85a76671.css",
+    "main.js": "/ICPAIR/static/js/main.5473f9b4.js",
+    "index.html": "/ICPAIR/index.html",
+    "main.85a76671.css.map": "/ICPAIR/static/css/main.85a76671.css.map",
+    "main.5473f9b4.js.map": "/ICPAIR/static/js/main.5473f9b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85a76671.css",
+    "static/js/main.5473f9b4.js"
+  ]
+}
