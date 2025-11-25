@@ -1,0 +1,272 @@
+/* --- MAIN CONTAINER --- */
+.forecast-container {
+    /* Dark Glass Effect */
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid #334155;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+/* --- HEADER --- */
+.forecast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+}
+
+.header-title {
+    text-align: left;
+}
+
+.section-label {
+    font-family: 'Courier New', monospace;
+    color: #00d2d3;
+    /* Neon Cyan */
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.neon-text {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 0 20px rgba(0, 210, 211, 0.2);
+}
+
+/* --- SELECT DROPDOWN --- */
+.cyber-select {
+    background: #0f172a;
+    color: #fff;
+    border: 1px solid #334155;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.cyber-select:hover,
+.cyber-select:focus {
+    border-color: #00d2d3;
+    box-shadow: 0 0 15px rgba(0, 210, 211, 0.2);
+}
+
+/* --- GRID LAYOUT --- */
+.forecast-grid {
+    display: grid;
+    /* Auto-fit columns (min 120px wide) */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+/* --- DAY CARDS --- */
+.day-card {
+    background: #1e293b;
+    /* Dark Slate */
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 20px 10px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.day-card:hover {
+    transform: translateY(-5px);
+    background: #263344;
+    border-color: #94a3b8;
+}
+
+/* --- ACTIVE CARD (TODAY) --- */
+.day-card.active {
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+    border: 2px solid #00d2d3;
+    /* Cyan Border */
+    box-shadow: 0 0 20px rgba(0, 210, 211, 0.15);
+}
+
+/* --- CARD CONTENT --- */
+.day-name {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.day-date {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+/* --- PM VALUES DISPLAY --- */
+.pm-values {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pm-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pm-label {
+    font-size: 0.65rem;
+    color: #64748b;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.pm-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* --- O₂ SECTION --- */
+.o2-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- O₂ ICON WRAPPER --- */
+.o2-icon-wrapper {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- O₂ MOLECULE ANIMATION --- */
+.o2-molecule {
+    filter: drop-shadow(0 0 6px rgba(46, 213, 115, 0.3));
+}
+
+.o2-molecule .atom-circle {
+    animation: breathe 2s ease-in-out infinite;
+}
+
+.o2-molecule .bond-line {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.loading-icon {
+    font-size: 1.5rem;
+    color: #64748b;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* --- O₂ VALUE --- */
+.o2-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+
+.o2-label {
+    font-size: 0.65rem;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+/* --- STATUS COLORS --- */
+.day-card.glow-green .o2-value {
+    color: #2ed573;
+}
+
+.day-card.glow-orange .o2-value {
+    color: #ffa502;
+}
+
+.day-card.glow-red .o2-value {
+    color: #ff4757;
+}
+
+/* O₂ specific color classes */
+.o2-value.glow-green {
+    color: #2ed573;
+}
+
+.o2-value.glow-orange {
+    color: #ffa502;
+}
+
+.o2-value.glow-red {
+    color: #ff4757;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .forecast-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 per row on mobile */
+    }
+}

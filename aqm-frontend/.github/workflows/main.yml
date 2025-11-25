@@ -1,0 +1,65 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests
+      run: npm test -- --watchAll=false --passWithNoTests
+
+    - name: Build project
+      run: npm run build
+      env:
+        # Установите публичный URL вашего бэкенда. Замените ВАШ_IP_СЕРВЕРА на фактический IP/домен.
+        REACT_APP_API_URL: http://89.218.178.215:5005
+
+  deploy:
+    name: Deploy to server
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install sshpass
+      run: sudo apt-get update && sudo apt-get install -y sshpass
+
+    - name: Add host to known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Sync files and build/run Docker on server
+      env:
+        SSHPASS: ${{ secrets.SSH_PASSWORD }}
+      run: |
+        sshpass -e rsync -avz --exclude 'node_modules' --exclude '.git' ./ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/aqm/aqm-frontend/
+
+        sshpass -e ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "cd ~/aqm && \
+          docker compose build frontend && \
+          docker compose up -d --force-recreate frontend" 
+
+# 1. Настройте секреты GitHub: SSH_USER, SSH_PASSWORD, SSH_HOST

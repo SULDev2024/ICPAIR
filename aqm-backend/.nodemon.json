@@ -1,0 +1,17 @@
+{
+    "watch": ["src"],
+    "ext": "js,json",
+    "ignore": [
+      "package-lock.json",
+      "README.md",
+      ".gitignore",
+      "node_modules",
+      ".vscode",
+      "logs",
+      "src/**/*.test.js",
+      "predict_pm25.py"
+    ],
+    "exec": "node src/app.js",
+    "verbose": false
+  }
+  

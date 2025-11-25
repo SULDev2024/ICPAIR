@@ -1,0 +1,177 @@
+.chat-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 24px;
+    padding: 10px 12px;
+    cursor: pointer;
+    z-index: 999;
+    background: none;  
+    border: none;
+  }
+
+  .chat-toggle-btn img{
+    width: 40px;
+  }
+
+ 
+  
+
+  
+  .chat-box {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    background: white;
+    border: 2px solid #1e9c91;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+  }
+  
+  .chat-header {
+    background-color: #1e9c91;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .offline-badge {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .settings-toggle {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .settings-panel {
+    padding: 10px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .settings-panel label {
+    font-size: 0.85rem;
+    color: #333;
+  }
+
+  .settings-panel input[type=password] {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  .save-btn {
+    background: #1e9c91;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  /* Tooltip container used for badge and settings (small, non-intrusive) */
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    width: 220px;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 6px 8px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    line-height: 1.3;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+  }
+
+  /* small arrow */
+  .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.8) transparent transparent transparent;
+  }
+  
+  .chat-messages {
+    padding: 10px;
+    height: 220px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+  }
+  
+  .chat-message {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    max-width: 85%;
+    word-wrap: break-word;
+  }
+  
+  .chat-message.bot {
+    background-color: #d6f2f0;
+    align-self: flex-start;
+  }
+  
+  .chat-message.user {
+    background-color: #c1f2dd;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  
+  .chat-input input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+  }
+  
+  .chat-input button {
+    background-color: #1e9c91;
+    color: white;
+    border: none;
+    padding: 0 16px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  

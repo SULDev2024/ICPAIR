@@ -1,0 +1,35 @@
+import React from "react";
+import "./UserFooter.css";
+
+
+const UserFooter = () => (
+  <footer className="user-footer" id="contacts">
+    <div className="user-footer-container">
+      <div className="user-footer-section">
+        <div className="logo">
+        <img src="/Images/Logo-v2.svg" alt="ICPAIR" className="logo-img" />
+        </div>
+        <p>ICPAIR – следи за качеством воздуха в режиме реального времени. Данные о загрязнении, прогнозы и аналитика для жителей города.</p>
+        <p className="copyright">© 2025 ICPAIR. Все права защищены. 🌍💙</p>
+      </div>
+
+      <div className="user-footer-divider"></div>
+
+      <div className="user-footer-section">
+        <h3>Мы в соцсетях:</h3>
+        <p>Instagram <img className="icon" src="/Images/instagram.png" alt="Instagram" /></p>
+        <p>Telegram <img className="icon" src="/Images/telegram.png" alt="Telegram" /></p>
+      </div>
+
+      <div className="user-footer-divider"></div>
+
+      <div className="user-footer-section">
+        <h3>Свяжитесь с нами:</h3>
+        <p>icpair2025@gmail.com</p>
+        <p>+7 777 777 77 77</p>
+      </div>
+    </div>
+  </footer>
+);
+
+export default UserFooter;

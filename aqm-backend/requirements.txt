@@ -1,0 +1,8 @@
+pandas
+lightgbm
+scikit-learn
+joblib
+numpy
+datetime
+flask
+psycopg2-binary

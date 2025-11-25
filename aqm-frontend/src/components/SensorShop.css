@@ -1,0 +1,191 @@
+.sensor-shop {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 20px;
+  min-height: 500px;
+}
+
+.sensor-shop h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.sensor-shop p {
+  margin-bottom: 25px;
+  color: #444;
+}
+
+.sensor-shop-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.filter-section {
+  width: 250px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.filter-section label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+
+.checkbox-label input[type="checkbox"] {
+  margin: 0;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.price-inputs {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.price-inputs input {
+  width: 70px;
+  padding: 5px;
+}
+
+.sort-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.sort-options div {
+  margin-bottom: 10px;
+}
+
+.sort-options label {
+  margin-left: 5px;
+}
+
+.sensor-shop h1{
+  color: #003366;
+}
+
+.sensor-shop-grid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.sensor-shop-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sensor-shop-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.sensor-shop-card h3 {
+  font-size: 1.1em;
+  margin: 10px 0 5px;
+}
+
+.sensor-shop-card p {
+  margin: 5px 0;
+}
+
+.sensor-shop-price {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.sensor-shop-card button {
+  background-color: #005bbb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sensor-shop-card button:hover {
+  background-color: #004799;
+}
+
+@media (max-width: 600px) {
+  .sensor-shop {
+    padding: 10px;
+  }
+
+  .sensor-shop h1 {
+    font-size: 22px;
+  }
+
+  .sensor-shop-content {
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .filter-section {
+    padding: 15px;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .price-inputs {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .price-inputs input {
+    width: 100%;
+  }
+
+  .sensor-shop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sensor-shop-card {
+    padding: 12px;
+  }
+
+  .sensor-shop-card button {
+    width: 100%;
+  }
+}
+
+.sort-title{
+  color: #003366;
+}
+
+.sort-options{
+    color: #212121eb;
+
+}
+
+.filter-section{
+    color: #003366;
+
+}

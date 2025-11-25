@@ -1,0 +1,88 @@
+name: CI/CD Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install Node.js dependencies and Run tests
+      run: |
+        npm install
+        npx jest
+      # Убедитесь, что у вас есть скрипт 'test' в package.json в папке aqm-backend
+      # Этот шаг проверяет работоспособность backend части перед деплоем
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install sshpass
+      run: sudo apt-get update && sudo apt-get install -y sshpass
+
+    - name: Deploy to server via SSH
+      run: |
+        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '\
+          cd /home/${{ secrets.SSH_USER }}/aqm && \
+          cd aqm-backend && \
+          git pull origin main && \
+          cd .. && \
+          docker-compose build backend ml && \
+          docker-compose up -d backend ml \
+        '
+      env:
+        SSH_ASKPASS: /bin/false
+
+      # Важно:
+      # 1. Настройте секреты GitHub: SSH_USER, SSH_PASSWORD, SSH_HOST
+      # 2. Убедитесь, что на сервере установлен Docker и Docker Compose.
+      # 3. Убедитесь, что директория /home/${{ secrets.SSH_USER }}/aqm существует на сервере и содержит ваш docker-compose.yml и папки проекта.
+      # 4. Убедитесь, что у пользователя ${{ secrets.SSH_USER }} есть права на выполнение команд и доступ к файлам/папкам на сервере.
+
+    # Optional: Login to Docker Registry and Push Image
+    # Раскомментируйте и настройте следующие шаги, если вы используете внешний реестр Docker
+
+    # - name: Login to Docker Hub
+    #   uses: docker/login-action@v3
+    #   with:
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # - name: Push Docker image
+    #   run: docker push your-docker-username/your-image-name:latest
+      # Замените 'your-docker-username/your-image-name' на ваше имя пользователя Docker Hub или путь к образу в другом реестре
+
+    # Deployment Steps
+    # Добавьте здесь шаги для развертывания вашего приложения.
+    # Это может включать SSH на сервер и запуск нового контейнера, использование Kubernetes или облачных сервисов.
+    # Эта часть сильно зависит от вашей инфраструктуры и требует ручной настройки.
+
+    # Example (replace with your actual deployment logic):
+    # - name: Deploy to Server
+    #   uses: appleboy/ssh-action@v1.0.3
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #     script: |
+    #       docker pull your-docker-username/your-image-name:latest
+    #       docker stop my-app-container || true
+    #       docker rm my-app-container || true
+    #       docker run -d --name my-app-container -p 80:5005 your-docker-username/your-image-name:latest
+      # Замените параметры подключения (host, username, key) на свои и обновите команды развертывания 
